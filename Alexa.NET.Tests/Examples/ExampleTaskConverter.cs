@@ -1,7 +1,7 @@
 ﻿using Alexa.NET.ConnectionTasks;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response.Converters;
-using Newtonsoft.Json.Linq;
+
 using System.Linq;
 
 namespace Alexa.NET.Tests.Examples

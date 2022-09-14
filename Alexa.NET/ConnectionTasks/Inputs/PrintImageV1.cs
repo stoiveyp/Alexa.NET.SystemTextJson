@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
@@ -12,25 +12,25 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonIgnore]
         public string ConnectionUri => AssociatedUri;
 
-        [JsonProperty("@type")]
+        [JsonPropertyName("@type")]
         public string Type => "PrintImageRequest";
 
-        [JsonProperty("@version")]
+        [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("context")]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("imageType"),JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("imageType"),JsonConverter(typeof(JsonStringEnumConverter))]
         public PrintImageV1Type ImageV1Type { get; set; }
 
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
     }
 

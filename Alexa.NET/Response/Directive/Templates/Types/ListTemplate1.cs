@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response.Directive.Templates.Types
 {
@@ -11,16 +11,16 @@ namespace Alexa.NET.Response.Directive.Templates.Types
         public string Type => "ListTemplate1";
         public string Token { get; set; }
 
-        [JsonProperty("backButton", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("backButton")]
         public string BackButton { get; set; }
 
-        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("backgroundImage", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("backgroundImage")]
         public TemplateImage BackgroundImage { get; set; }
 
-        public List<ListItem> Items { get; set; } = new List<ListItem>();
+        public List<ListItem> Items { get; set; } = new();
 
         public bool ShouldSerializeItems()
         {

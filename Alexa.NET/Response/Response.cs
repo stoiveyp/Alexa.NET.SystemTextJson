@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,18 +7,18 @@ namespace Alexa.NET.Response
 {
     public class ResponseBody
     {
-        [JsonProperty("outputSpeech", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("outputSpeech")]
         public IOutputSpeech OutputSpeech { get; set; }
 
-        [JsonProperty("card", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("card")]
         public ICard Card { get; set; }
 
-        [JsonProperty("reprompt", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("reprompt")]
         public Reprompt Reprompt { get; set; }
 
         private bool? _shouldEndSession = false;
 
-        [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("shouldEndSession")]
         public bool? ShouldEndSession
         {
             get
@@ -41,7 +41,7 @@ namespace Alexa.NET.Response
             set => _shouldEndSession = value;
         }
 
-        [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("directives")]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
 
         public bool ShouldSerializeDirectives()

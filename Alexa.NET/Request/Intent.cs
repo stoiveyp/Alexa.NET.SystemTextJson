@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Request
 {
@@ -7,7 +7,7 @@ namespace Alexa.NET.Request
     {
         private string _name;
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name {
             get { return _name; }
             set {
@@ -20,10 +20,10 @@ namespace Alexa.NET.Request
         public IntentSignature Signature { get; private set; }
 
 
-        [JsonProperty("confirmationStatus")]
+        [JsonPropertyName("confirmationStatus")]
         public string ConfirmationStatus { get; set; }
 
-        [JsonProperty("slots")]
+        [JsonPropertyName("slots")]
         public Dictionary<string, Slot> Slots { get; set; }
     }
 }

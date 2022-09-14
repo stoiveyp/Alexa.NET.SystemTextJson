@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Alexa.NET.Helpers;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
@@ -12,25 +12,25 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonIgnore]
         public string ConnectionUri => AssociatedUri;
 
-        [JsonProperty("@type")]
+        [JsonPropertyName("@type")]
         public string Type => "ScheduleTaxiReservationRequest";
 
-        [JsonProperty("@version")]
+        [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("context")]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonProperty("partySize")]
+        [JsonPropertyName("partySize")]
         public int PartySize { get; set; }
 
-        [JsonProperty("pickupLocation",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("pickupLocation")]
         public PostalAddress PickupLocation { get; set; }
 
-        [JsonProperty("dropoffLocation",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("dropoffLocation")]
         public PostalAddress DropoffLocation { get; set; }
 
-        [JsonProperty("pickupTime",NullValueHandling = NullValueHandling.Ignore),JsonConverter(typeof(MixedDateTimeConverter))]
+        [JsonPropertyName("pickupTime"),JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime? PickupTime { get; set; }
     }
 }

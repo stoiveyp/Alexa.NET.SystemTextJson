@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
+
 
 namespace Alexa.NET.Response.Directive
 {
     public static class ConnectionSendRequestFactory
     {
-        public static List<IConnectionSendRequestHandler> Handlers = new List<IConnectionSendRequestHandler>
+        public static List<IConnectionSendRequestHandler> Handlers = new()
         {
             new AskForPermissionDirectiveHandler()
         };

@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Response.Directive
 {
     public class AudioItemStream
     {
-        [JsonRequired]
-        [JsonProperty("url")]
+        
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
-        [JsonRequired]
-        [JsonProperty("token")]
+        
+        [JsonPropertyName("token")]
         public string Token { get; set; }
         
-        [JsonProperty("expectedPreviousToken")]
+        [JsonPropertyName("expectedPreviousToken")]
         public string ExpectedPreviousToken { get; set; }
 
-        [JsonRequired]
-        [JsonProperty("offsetInMilliseconds")]
+        
+        [JsonPropertyName("offsetInMilliseconds")]
         public int OffsetInMilliseconds { get; set; }
     }
 }

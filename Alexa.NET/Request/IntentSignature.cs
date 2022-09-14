@@ -11,7 +11,7 @@ namespace Alexa.NET.Request
         public string Action { get; private set; }
         public System.Collections.ObjectModel.ReadOnlyDictionary<string, IntentProperty> Properties { get; private set; }
 
-		private static Regex PropertyFinder = new Regex(@"(\w+?)@(\w+?)\b(\[(\w+)\])*", RegexOptions.Compiled);
+		private static Regex PropertyFinder = new(@"(\w+?)@(\w+?)\b(\[(\w+)\])*", RegexOptions.Compiled);
 
         private IntentSignature(string fullName)
         {

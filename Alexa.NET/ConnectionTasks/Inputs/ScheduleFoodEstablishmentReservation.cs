@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Alexa.NET.Helpers;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
@@ -12,22 +12,22 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonIgnore]
         public string ConnectionUri => AssociatedUri;
 
-        [JsonProperty("@type")]
+        [JsonPropertyName("@type")]
         public string Type => "ScheduleFoodEstablishmentReservationRequest";
 
-        [JsonProperty("@version")]
+        [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("context")]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonProperty("partySize",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("partySize")]
         public int PartySize { get; set; }
 
-        [JsonProperty("startTime",NullValueHandling = NullValueHandling.Ignore),JsonConverter(typeof(MixedDateTimeConverter))]
+        [JsonPropertyName("startTime"),JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime? StartTime { get; set; }
 
-        [JsonProperty("restaurant")]
+        [JsonPropertyName("restaurant")]
         public Restaurant Restaurant { get; set; }
     }
 }

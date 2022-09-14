@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
+
 
 namespace Alexa.NET.Request.Type
 {
     public class ConnectionResponseTypeConverter : IDataDrivenRequestTypeConverter
     {
-        public static List<IConnectionResponseHandler> Handlers = new List<IConnectionResponseHandler>
+        public static List<IConnectionResponseHandler> Handlers = new()
         {
             new AskForRequestHandler()
         };

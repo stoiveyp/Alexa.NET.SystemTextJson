@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ namespace Alexa.NET.Response.Directive
 {
     public class ClearQueueDirective : IDirective
     {
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type => "AudioPlayer.ClearQueue";
 
-        [JsonProperty("clearBehavior")]
-        [JsonRequired]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("clearBehavior")]
+        
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ClearBehavior ClearBehavior { get; set; }
     }
 }

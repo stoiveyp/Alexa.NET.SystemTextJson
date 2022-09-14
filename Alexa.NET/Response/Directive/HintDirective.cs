@@ -1,5 +1,5 @@
 ﻿using Alexa.NET.Response.Directive.Templates;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response.Directive
 {
@@ -14,10 +14,10 @@ namespace Alexa.NET.Response.Directive
             Hint = new Hint(hintText, textType);
         }
 
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type => "Hint";
         
-        [JsonProperty("hint")]
+        [JsonPropertyName("hint")]
         public Hint Hint { get; set; }
     }
 }

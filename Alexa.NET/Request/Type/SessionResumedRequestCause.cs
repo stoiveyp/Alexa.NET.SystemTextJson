@@ -1,20 +1,20 @@
 ﻿using Alexa.NET.ConnectionTasks;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Request.Type
 {
     public class SessionResumedRequestCause
     {
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
-        [JsonProperty("token")]
+        [JsonPropertyName("token")]
         public string Token { get; set; }
 
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public ConnectionStatus Status { get; set; }
 
-        [JsonProperty("result")]
+        [JsonPropertyName("result")]
         public object Result { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response
 {
@@ -17,10 +17,10 @@ namespace Alexa.NET.Response
             Directive = directive;
         }
 
-        [JsonProperty("header")]
+        [JsonPropertyName("header")]
         public ProgressiveResponseHeader Header { get; set; }
 
-        [JsonProperty("directive")]
+        [JsonPropertyName("directive")]
         public IProgressiveResponseDirective Directive { get; set; }
     }
 }

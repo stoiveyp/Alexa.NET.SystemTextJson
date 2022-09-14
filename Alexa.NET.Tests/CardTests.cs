@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using System.IO;
-using Newtonsoft.Json.Linq;
+
 using Alexa.NET.Response;
 
 namespace Alexa.NET.Tests

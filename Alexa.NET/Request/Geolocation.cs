@@ -1,22 +1,22 @@
 ﻿using System;
 using Alexa.NET.Request.Type;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Request
 {
     public class Geolocation
     {
-        [JsonProperty("locationServices", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("locationServices")]
         public LocationServices LocationServices { get; set; }
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public DateTimeOffset Timestamp { get; set; }
-        [JsonProperty("coordinate", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("coordinate")]
         public GeolocationCoordinate Coordinate { get; set; }
-        [JsonProperty("altitude",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("altitude")]
         public GeolocationAltitude Altitude { get; set; }
-        [JsonProperty("heading", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("heading")]
         public GeolocationHeading Heading { get; set; }
-        [JsonProperty("speed", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("speed")]
         public GeolocationSpeed Speed { get; set; }
     }
 }

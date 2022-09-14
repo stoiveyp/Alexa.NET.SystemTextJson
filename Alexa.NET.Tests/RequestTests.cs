@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+
 using Xunit;
 
 namespace Alexa.NET.Tests

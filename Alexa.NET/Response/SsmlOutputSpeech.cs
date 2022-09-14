@@ -1,6 +1,6 @@
 using Alexa.NET.Response.Directive;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.Response
 {
@@ -16,19 +16,19 @@ namespace Alexa.NET.Response
             Ssml = ssml;
         }
 
-        [JsonRequired]
-        [JsonProperty("type")]
+        
+        [JsonPropertyName("type")]
         public string Type
         {
             get { return "SSML"; }
         }
 
-        [JsonRequired]
-        [JsonProperty("ssml")]
+        
+        [JsonPropertyName("ssml")]
         public string Ssml { get; set; }
 
-        [JsonProperty("playBehavior", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("playBehavior")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public PlayBehavior? PlayBehavior { get; set; }
     }
 }

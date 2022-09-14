@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Response.Directive
 {
@@ -13,10 +13,10 @@ namespace Alexa.NET.Response.Directive
             VideoItem = new VideoItem(source);
         }
 
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type => "VideoApp.Launch";
 
-        [JsonProperty("videoItem",Required = Required.Always)]
+        [JsonPropertyName("videoItem")]
         public VideoItem VideoItem { get; set; }
 
         public bool? ShouldEndSession => null;

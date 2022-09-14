@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+
 
 namespace Alexa.NET.Response.Converters
 {
@@ -12,7 +12,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanWrite => false;
 
-        public static Dictionary<string, Func<IOutputSpeech>> TypeFactories = new Dictionary<string, Func<IOutputSpeech>>
+        public static Dictionary<string, Func<IOutputSpeech>> TypeFactories = new()
         {
             { "SSML", () => new SsmlOutputSpeech() },
             { "PlainText", () => new PlainTextOutputSpeech() },

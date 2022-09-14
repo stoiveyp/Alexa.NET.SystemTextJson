@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Response
 {
     public class SimpleCard : ICard
     {
-        [JsonProperty("type")]
-        [JsonRequired]
+        [JsonPropertyName("type")]
+        
         public string Type
         {
             get { return "Simple"; }
         }
 
-        [JsonProperty("title")]
-        [JsonRequired]
+        [JsonPropertyName("title")]
+        
         public string Title { get; set; }
 
-        [JsonRequired]
-        [JsonProperty("content")]
+        
+        [JsonPropertyName("content")]
         public string Content { get; set; }
     }
 }

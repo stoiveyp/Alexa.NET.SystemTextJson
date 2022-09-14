@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response.Directive
 {
@@ -14,10 +14,10 @@ namespace Alexa.NET.Response.Directive
             Type = type;
         }
 
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; }
 
         [JsonExtensionData]
-        public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, object> Properties { get; set; } = new();
     }
 }

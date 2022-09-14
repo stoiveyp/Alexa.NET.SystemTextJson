@@ -1,25 +1,25 @@
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Request
 {
     public class Slot
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
-        [JsonProperty("confirmationStatus", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("confirmationStatus")]
         public string ConfirmationStatus { get; set; }
 
-        [JsonProperty("source",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("source")]
         public string Source { get; set; }
 
-        [JsonProperty("resolutions", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("resolutions")]
         public Resolution Resolution { get; set; }
 
-        [JsonProperty("slotValue",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("slotValue")]
         public SlotValue SlotValue { get; set; }
     }
 }

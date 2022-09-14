@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+﻿
 
 namespace Alexa.NET.Response.Directive
 {

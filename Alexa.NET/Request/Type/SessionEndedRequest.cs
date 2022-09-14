@@ -1,15 +1,15 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.Request.Type
 {
     public class SessionEndedRequest : Request
     {
-        [JsonProperty("reason")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("reason")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Reason Reason { get; set; }
 
-        [JsonProperty("error",NullValueHandling=NullValueHandling.Ignore)]
+        [JsonPropertyName("error")]
         public Error Error { get; set; }
     }
 }

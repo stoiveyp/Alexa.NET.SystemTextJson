@@ -1,6 +1,6 @@
 using Alexa.NET.Response.Directive;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.Response
 {
@@ -16,19 +16,19 @@ namespace Alexa.NET.Response
             Text = text;
         }
 
-        [JsonProperty("type")]
-        [JsonRequired]
+        [JsonPropertyName("type")]
+        
         public string Type
         {
             get { return "PlainText"; }
         }
 
-        [JsonRequired]
-        [JsonProperty("text")]
+        
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("playBehavior", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("playBehavior")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public PlayBehavior? PlayBehavior { get; set; }
     }
 }

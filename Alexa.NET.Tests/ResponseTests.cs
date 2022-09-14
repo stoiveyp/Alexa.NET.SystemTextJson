@@ -11,8 +11,8 @@ using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.Templates;
 using Alexa.NET.Response.Directive.Templates.Types;
 using Alexa.NET.Response.Ssml;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+
 using Newtonsoft.Json.Serialization;
 using Xunit;
 

@@ -1,21 +1,21 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.Request
 {
     public class SlotValue
     {
-        [JsonProperty("type",NullValueHandling = NullValueHandling.Ignore),
-         JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("type"),
+         JsonConverter(typeof(JsonStringEnumConverter))]
         public SlotValueType SlotType { get; set; }
 
-        [JsonProperty("value",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
-        [JsonProperty("values",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("values")]
         public SlotValue[] Values { get; set; }
 
-        [JsonProperty("resolutions",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("resolutions")]
         public Resolution Resolutions { get; set; }
     }
 }

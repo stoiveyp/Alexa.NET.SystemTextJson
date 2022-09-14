@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Request
 {
     public class AuthenticationConfidenceLevel
     {
-        [JsonProperty("level")]
+        [JsonPropertyName("level")]
         public int Level { get; set; }
 
-        [JsonProperty("customPolicy",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("customPolicy")]
         public AuthenticationConfidenceLevelCustomPolicy Custom { get; set; }
     }
 }

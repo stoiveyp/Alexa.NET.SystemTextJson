@@ -1,5 +1,5 @@
 ﻿using Alexa.NET.Request;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
@@ -11,9 +11,10 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonIgnore]
         public string ConnectionUri => AssociatedUri;
 
-        [JsonProperty("requestedAuthenticationConfidenceLevel")]
+        [JsonPropertyName("requestedAuthenticationConfidenceLevel")]
         public AuthenticationConfidenceLevel RequestedAuthenticationConfidenceLevel { get; } =
-            new AuthenticationConfidenceLevel { 
+            new()
+            { 
                 Level = 400, 
                 Custom = new AuthenticationConfidenceLevelCustomPolicy("VOICE_PIN")
 

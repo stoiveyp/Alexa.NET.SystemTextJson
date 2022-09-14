@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace Alexa.NET.Request.Type
 {
     public class ErrorCause
     {
-        [JsonProperty("requestId")]
+        [JsonPropertyName("requestId")]
         public string requestId { get; set; }
     }
 }

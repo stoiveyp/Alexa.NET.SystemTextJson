@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Response.Directive
 {
     public class SlotType
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public SlotTypeValue[] Values { get; set; }
     }
 }

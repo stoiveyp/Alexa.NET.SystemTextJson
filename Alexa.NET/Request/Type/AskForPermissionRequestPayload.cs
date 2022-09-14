@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+
+
 
 namespace Alexa.NET.Request.Type
 {
     public class AskForPermissionRequestPayload
     {
-        [JsonProperty("permissionScope")]
+        [JsonPropertyName("permissionScope")]
         public string PermissionScope { get; set; }
 
-        [JsonProperty("status"), JsonConverter(typeof(StringEnumConverter))]
+        [JsonPropertyName("status"), JsonConverter(typeof(JsonStringEnumConverter))]
         public PermissionStatus Status { get; set; }
     }
 

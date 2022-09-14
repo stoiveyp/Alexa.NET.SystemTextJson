@@ -1,14 +1,14 @@
 ﻿using System;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response.Directive.Templates
 {
     public class TemplateText
     {
-        [JsonProperty("text", Required = Required.Always)]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("type", Required = Required.Always)]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
     }
 }

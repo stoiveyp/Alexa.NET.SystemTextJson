@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+
 
 namespace Alexa.NET.Response.Directive
 {
     public class AudioItemMetadata
     {
-		[JsonProperty("title")]
+		[JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("subtitle")]
+        [JsonPropertyName("subtitle")]
 		public string Subtitle { get; set; }
 
-		[JsonProperty("art")]
-		public AudioItemSources Art { get; set; } = new AudioItemSources();
+		[JsonPropertyName("art")]
+		public AudioItemSources Art { get; set; } = new();
 
-		[JsonProperty("backgroundImage")]
-		public AudioItemSources BackgroundImage { get; set; } = new AudioItemSources();
+		[JsonPropertyName("backgroundImage")]
+		public AudioItemSources BackgroundImage { get; set; } = new();
     }
 }

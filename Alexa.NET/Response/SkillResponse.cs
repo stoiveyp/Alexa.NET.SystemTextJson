@@ -1,19 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿
 using System.Collections.Generic;
 
 namespace Alexa.NET.Response
 {
     public class SkillResponse
     {
-        [JsonRequired]
-        [JsonProperty("version")]
+        
+        [JsonPropertyName("version")]
         public string Version { get; set; }
 
-        [JsonProperty("sessionAttributes", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("sessionAttributes")]
         public Dictionary<string, object> SessionAttributes { get; set; }
 
-        [JsonRequired]
-        [JsonProperty("response")]
+        
+        [JsonPropertyName("response")]
         public ResponseBody Response { get; set; }
     }
 }

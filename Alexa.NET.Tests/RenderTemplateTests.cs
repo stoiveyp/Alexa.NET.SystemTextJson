@@ -4,7 +4,7 @@ using System.IO;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.Templates;
 using Alexa.NET.Response.Directive.Templates.Types;
-using Newtonsoft.Json.Linq;
+
 using Xunit;
 
 namespace Alexa.NET.Tests
@@ -30,7 +30,7 @@ namespace Alexa.NET.Tests
                         ContentDescription = "Textured grey background",
                         Sources = new List<ImageSource>
                         {
-                            new ImageSource { Url="https://www.example.com/background-image1.png"}
+                            new() { Url="https://www.example.com/background-image1.png"}
                         }
                     },
                     Title = "My Favorite Car",
@@ -73,7 +73,7 @@ namespace Alexa.NET.Tests
                     ContentDescription = "My favorite car",
                     Sources = new List<ImageSource>
                     {
-                        new ImageSource{Url="https://www.example.com/my-favorite-car.png"}
+                        new() {Url="https://www.example.com/my-favorite-car.png"}
                     }
                 },
                 BackgroundImage = new TemplateImage
@@ -81,7 +81,7 @@ namespace Alexa.NET.Tests
                     ContentDescription = "Textured grey background",
                     Sources = new List<ImageSource>
                     {
-                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                        new() { Url="https://www.example.com/background-image1.png"}
                     }
                 },
 
@@ -107,14 +107,14 @@ namespace Alexa.NET.Tests
                 Image = new TemplateImage
                 {
                     ContentDescription = ImageDescription,
-                    Sources = new List<ImageSource> { new ImageSource { Url = ImageSource } }
+                    Sources = new List<ImageSource> { new() { Url = ImageSource } }
                 },
                 BackgroundImage = new TemplateImage
                 {
                     ContentDescription = "Textured grey background",
                     Sources = new List<ImageSource>
                     {
-                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                        new() { Url="https://www.example.com/background-image1.png"}
                     }
                 },
 
@@ -140,14 +140,14 @@ namespace Alexa.NET.Tests
                 Image = new TemplateImage
                 {
                     ContentDescription = ImageDescription,
-                    Sources = new List<ImageSource> { new ImageSource { Url = ImageSource } }
+                    Sources = new List<ImageSource> { new() { Url = ImageSource } }
                 },
                 BackgroundImage = new TemplateImage
                 {
                     ContentDescription = "Textured grey background",
                     Sources = new List<ImageSource>
                     {
-                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                        new() { Url="https://www.example.com/background-image1.png"}
                     }
                 },
 
@@ -166,7 +166,7 @@ namespace Alexa.NET.Tests
                 Title = "Pizzas",
                 Items = new List<ListItem>
                 {
-                    new ListItem
+                    new()
                     {
                         Token="item_1",
                         Content = new TemplateContent
@@ -189,14 +189,14 @@ namespace Alexa.NET.Tests
                         },
                         Image = new TemplateImage
                         {
-                            Sources = new List<ImageSource>{new ImageSource
+                            Sources = new List<ImageSource>{new()
                             {
                                 Url= "http://www.example.com/images/thumb/SupremePizza1.jpg"
                             }},
                             ContentDescription = "Supreme Large Pan Pizza"
                         }
                     },
-                    new ListItem
+                    new()
                     {
                         Token="item_2",
                         Content = new TemplateContent
@@ -209,7 +209,7 @@ namespace Alexa.NET.Tests
                         },
                         Image = new TemplateImage
                         {
-                            Sources = new List<ImageSource>{new ImageSource
+                            Sources = new List<ImageSource>{new()
                             {
                                 Url= "http://www.example.com/images/thumb/MeatEaterPizza1.jpg"
                             }},
@@ -234,12 +234,12 @@ namespace Alexa.NET.Tests
                     ContentDescription = "Textured grey background",
                     Sources = new List<ImageSource>
                     {
-                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                        new() { Url="https://www.example.com/background-image1.png"}
                     }
                 },
                 Items = new List<ListItem>
                 {
-                    new ListItem
+                    new()
                     {
                         Token="item_1",
                         Content = new TemplateContent
@@ -262,7 +262,7 @@ namespace Alexa.NET.Tests
                         },
                         Image = new TemplateImage
                         {
-                            Sources = new List<ImageSource>{new ImageSource
+                            Sources = new List<ImageSource>{new()
                             {
                                 Url= "http://www.example.com/images/thumb/SupremePizza1.jpg"
                             }},
@@ -280,7 +280,7 @@ namespace Alexa.NET.Tests
             var actual = new TemplateImage
             {
                 ContentDescription = ImageDescription,
-                Sources = new List<ImageSource> { new ImageSource { Url = ImageSource } }
+                Sources = new List<ImageSource> { new() { Url = ImageSource } }
             };
             Assert.True(CompareJson(actual, "TemplateImageBasic.json"));
         }
@@ -291,7 +291,8 @@ namespace Alexa.NET.Tests
             var actual = new TemplateImage
             {
                 ContentDescription = ImageDescription,
-                Sources = new List<ImageSource> { new ImageSource {
+                Sources = new List<ImageSource> { new()
+                    {
                         Url = ImageSource,
                         Size = ImageSize.Small,
                         Height=480,

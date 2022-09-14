@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +8,13 @@ namespace Alexa.NET.Request.Type
 {
     public class PlaybackState
     {
-        [JsonProperty("token")]
+        [JsonPropertyName("token")]
         public string Token { get; set; }
 
-        [JsonProperty("offsetInMilliseconds")]
+        [JsonPropertyName("offsetInMilliseconds")]
         public long OffsetInMilliseconds { get; set; }
 
-        [JsonProperty("playerActivity")]
+        [JsonPropertyName("playerActivity")]
         public string PlayerActivity { get; set; }
     }
 }

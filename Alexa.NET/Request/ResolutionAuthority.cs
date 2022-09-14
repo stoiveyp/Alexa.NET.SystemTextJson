@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Request
 {
     public class ResolutionAuthority
     {
-        [JsonProperty("authority")]
+        [JsonPropertyName("authority")]
         public string Name { get; set; }
 
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public ResolutionStatus Status { get; set; }
 
-        [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("values")]
         public ResolutionValueContainer[] Values { get; set; }
     }
 }

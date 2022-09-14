@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ namespace Alexa.NET.Request
 {
     public class Device
     {
-        [JsonProperty("deviceId")]
+        [JsonPropertyName("deviceId")]
         public string DeviceID { get; set; }
 
-        [JsonProperty("supportedInterfaces")]
+        [JsonPropertyName("supportedInterfaces")]
         public Dictionary<string, object> SupportedInterfaces { get; set; }
 
         public bool IsInterfaceSupported(string interfaceName)
@@ -20,7 +20,7 @@ namespace Alexa.NET.Request
             return (hasInterface.HasValue ? hasInterface.Value : false); 
         }
 
-        [JsonProperty("persistentEndpointId",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("persistentEndpointId")]
         public string PersistentEndpointID { get; set; }
     }
 }

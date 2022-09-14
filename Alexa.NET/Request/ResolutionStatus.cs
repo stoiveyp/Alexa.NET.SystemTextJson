@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Request
 {
     public class ResolutionStatus
     {
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
     }
 }

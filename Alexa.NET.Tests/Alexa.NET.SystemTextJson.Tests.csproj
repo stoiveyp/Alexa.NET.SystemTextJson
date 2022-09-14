@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
 	  <NoWarn>CS0612,CS0618</NoWarn>
+	  <LangVersion>10</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Alexa.NET\Alexa.NET.csproj" />
+    <ProjectReference Include="..\Alexa.NET\Alexa.NET.SystemTextJson.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Examples\AskForPermissionConsent.json" />

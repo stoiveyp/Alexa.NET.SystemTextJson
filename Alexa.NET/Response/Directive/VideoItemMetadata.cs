@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
-namespace Alexa.NET.Response.Directive
+﻿namespace Alexa.NET.Response.Directive
 {
     public class VideoItemMetadata
     {
-        [JsonProperty("title",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("subtitle", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("subtitle")]
         public string Subtitle { get; set; }
     }
 }

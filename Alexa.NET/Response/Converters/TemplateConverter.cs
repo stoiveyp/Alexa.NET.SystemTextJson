@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.Templates.Types;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+
 
 namespace Alexa.NET.Response.Converters
 {
@@ -14,7 +14,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanWrite => false;
 
-        public static Dictionary<string, Func<ITemplate>> TypeFactories = new Dictionary<string, Func<ITemplate>>
+        public static Dictionary<string, Func<ITemplate>> TypeFactories = new()
         {
             { "BodyTemplate1", () => new BodyTemplate1() },
             { "BodyTemplate2", () => new BodyTemplate2() },

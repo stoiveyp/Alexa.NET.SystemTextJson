@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 
 namespace Alexa.NET.Request
 {
@@ -11,7 +11,7 @@ namespace Alexa.NET.Request
             PolicyName = policyName;
         }
 
-        [JsonProperty("policyName")]
+        [JsonPropertyName("policyName")]
         public string PolicyName { get; set; }
     }
 }
