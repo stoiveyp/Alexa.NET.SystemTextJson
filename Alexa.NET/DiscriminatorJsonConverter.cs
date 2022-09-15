@@ -19,37 +19,11 @@ namespace Alexa.NET.SystemTextJson
                 throw new InvalidOperationException("Bad position for a JSON object");
             }
 
-            ScanObjectForType(ref dReader, propertyName);
-
-            if (dReader.TokenType == JsonTokenType.EndObject)
-            {
-                throw new InvalidOperationException($"Unable to find {propertyName} discriminator");
-            }
-
-            dReader.Read();
-            var discriminator = (dReader.TokenType == JsonTokenType.Number)
-                ? dReader.GetInt32().ToString()
-                : dReader.GetString();
+            var discriminator = ReaderUtility.GetPropertyValue(ref dReader, propertyName);
 
             var newOptions = new JsonSerializerOptions(options);
             newOptions.Converters.Remove(this);
             return GenerateFromDiscriminator(discriminator, ref reader, newOptions);
-        }
-
-        private void ScanObjectForType(ref Utf8JsonReader dReader, string propertyName, bool skip = false)
-        {
-            while (skip || dReader.TokenType != JsonTokenType.PropertyName || dReader.GetString() != propertyName)
-            {
-                dReader.Read();
-                if (dReader.TokenType == JsonTokenType.StartObject)
-                {
-                    ScanObjectForType(ref dReader, propertyName, true);
-                }
-                else if (dReader.TokenType == JsonTokenType.EndObject)
-                {
-                    break;
-                }
-            }
         }
 
         protected abstract T GenerateFromDiscriminator(string type, ref Utf8JsonReader reader, JsonSerializerOptions options);

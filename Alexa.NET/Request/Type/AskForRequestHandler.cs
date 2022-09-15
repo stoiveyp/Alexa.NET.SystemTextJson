@@ -1,18 +1,25 @@
 ﻿
 
+using Alexa.NET.SystemTextJson;
+
 namespace Alexa.NET.Request.Type
 {
     //https://developer.amazon.com/en-US/docs/alexa/smapi/voice-permissions-for-reminders.html#send-a-connectionssendrequest-directive
     public class AskForRequestHandler : IConnectionResponseHandler
     {
-        public bool CanCreate(JObject data)
+        public bool CanCreate(Utf8JsonReader reader)
         {
-            return data.Value<string>("name") == "AskFor";
+            if (ReaderUtility.ScanObjectForType(ref reader, "name"))
+            {
+                return ReaderUtility.ReadPropertyValue(ref reader) == "AskFor";
+            }
+
+            return false;
         }
 
-        public ConnectionResponseRequest Create(JObject data)
+        public ConnectionResponseRequest Create(ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            return new AskForPermissionRequest();
+            return JsonSerializer.Deserialize<AskForPermissionRequest>(ref reader, options);
         }
     }
 }

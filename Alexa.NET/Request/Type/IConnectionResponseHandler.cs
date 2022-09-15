@@ -4,7 +4,7 @@ namespace Alexa.NET.Request.Type
 {
     public interface IConnectionResponseHandler
     {
-        bool CanCreate(JObject data);
-        ConnectionResponseRequest Create(JObject data);
+        bool CanCreate(Utf8JsonReader reader);
+        ConnectionResponseRequest Create(ref Utf8JsonReader reader, JsonSerializerOptions options);
     }
 }

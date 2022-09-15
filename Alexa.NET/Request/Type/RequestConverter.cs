@@ -4,10 +4,11 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
+using Alexa.NET.SystemTextJson;
 
 namespace Alexa.NET.Request.Type
 {
-    public class RequestConverter : JsonConverter
+    public class RequestConverter : DiscriminatorJsonConverter<Request>
     {
         public static readonly List<IRequestTypeConverter> RequestConverters = new(new IRequestTypeConverter[]
         {
@@ -20,42 +21,22 @@ namespace Alexa.NET.Request.Type
             new ConnectionResponseTypeConverter()
         });
 
-        public override bool CanWrite => false;
+        public RequestConverter():base("type"){}
 
         public override bool CanConvert(System.Type objectType)
         {
             return objectType == typeof(Request);
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        protected override Request GenerateFromDiscriminator(string requestType, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            // Load JObject from stream
-            var jObject = JObject.Load(reader);
-
-            // Create target request object based on "type" property
-            var target = Create(jObject);
-
-            // Populate the object properties
-            serializer.Populate(jObject.CreateReader(), target);
-
-            return target;
-        }
-
-        public Request Create(JObject data)
-        {
-            var requestType = data.Value<string>("type");
             var converter = RequestConverters.FirstOrDefault(c => c.CanConvert(requestType));
             return converter switch
             {
                 null =>
-                throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}."),
-                IDataDrivenRequestTypeConverter dataDriven => dataDriven.Convert(data),
-                _ => converter.Convert(requestType)
+                    throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}."),
+                IDataDrivenRequestTypeConverter dataDriven => dataDriven.Convert(requestType, ref reader, options),
+                _ => converter.Convert(requestType, ref reader, options)
             };
         }
     }

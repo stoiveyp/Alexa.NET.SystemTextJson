@@ -7,18 +7,18 @@
             return requestType == "IntentRequest" || requestType == "LaunchRequest" || requestType == "SessionEndedRequest" || requestType == "System.ExceptionEncountered";
         }
 
-        public Request Convert(string requestType)
+        public Request Convert(string requestType, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
             switch (requestType)
             {
                 case "IntentRequest":
-                    return new IntentRequest();
+                    return JsonSerializer.Deserialize<IntentRequest>(ref reader, options);
                 case "LaunchRequest":
-                    return new LaunchRequest();
+                    return JsonSerializer.Deserialize<LaunchRequest>(ref reader, options);
                 case "SessionEndedRequest":
-                    return new SessionEndedRequest();
+                    return JsonSerializer.Deserialize<SessionEndedRequest>(ref reader, options);
                 case "System.ExceptionEncountered":
-                    return new SystemExceptionRequest();
+                    return JsonSerializer.Deserialize<SystemExceptionRequest>(ref reader, options);
             }
             return null;
         }

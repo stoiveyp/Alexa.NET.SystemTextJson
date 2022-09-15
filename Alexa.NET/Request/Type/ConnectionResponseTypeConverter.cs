@@ -11,20 +11,24 @@ namespace Alexa.NET.Request.Type
         {
             new AskForRequestHandler()
         };
+
         public bool CanConvert(string requestType)
         {
             return requestType == "Connections.Response";
         }
 
-        public Request Convert(string requestType)
+        public Request Convert(string requestType, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
-        }
+            foreach (var h in Handlers)
+            {
+                var temp = reader;
+                if (h.CanCreate(temp))
+                {
+                    return h.Create(ref reader, options);
+                }
+            }
 
-        public Request Convert(JObject data)
-        {
-            var handler = Handlers.FirstOrDefault(h => h.CanCreate(data));
-            return handler?.Create(data);
+            return ;
         }
     }
 }

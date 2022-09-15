@@ -7,9 +7,9 @@
             return requestType == "Display.ElementSelected";
         }
 
-        public Request Convert(string requestType)
+        public Request Convert(string requestType, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            return new DisplayElementSelectedRequest();
+            return JsonSerializer.Deserialize<DisplayElementSelectedRequest>(ref reader, options);
         }
     }
 }
