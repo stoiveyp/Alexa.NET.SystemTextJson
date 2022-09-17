@@ -34,7 +34,7 @@ namespace Alexa.NET.Helpers
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value.ToString("u"));
+            writer.WriteStringValue(value.ToString("u").Replace(" ","T"));
         }
     }
 }

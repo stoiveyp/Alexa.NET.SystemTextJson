@@ -8,7 +8,7 @@
     "type": "ConnectionCompleted",
     "token": "1234",
     "status": {
-      "code": 200,
+      "code": "200",
       "message": "OK"
     },
     "result": null

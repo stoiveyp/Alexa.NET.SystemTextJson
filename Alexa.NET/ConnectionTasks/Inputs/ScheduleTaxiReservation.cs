@@ -21,7 +21,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonPropertyName("context")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonPropertyName("partySize")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("partySize")]
         public int PartySize { get; set; }
 
         [JsonPropertyName("pickupLocation")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
@@ -31,6 +31,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         public PostalAddress DropoffLocation { get; set; }
 
         [JsonPropertyName("pickupTime"),JsonConverter(typeof(MixedDateTimeConverter))]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? PickupTime { get; set; }
     }
 }

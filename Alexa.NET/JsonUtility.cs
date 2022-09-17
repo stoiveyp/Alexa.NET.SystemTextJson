@@ -6,14 +6,19 @@ namespace Alexa.NET.SystemTextJson
     {
         public static string GetPropertyValue(Utf8JsonReader reader, string propertyName)
         {
-            return GetPropertyValue(ref reader, propertyName);
+            return GetPropertyValue(ref reader, propertyName,false);
         }
 
-        public static string GetPropertyValue(ref Utf8JsonReader dReader, string propertyName)
+        public static string GetPropertyValue(ref Utf8JsonReader dReader, string propertyName, bool throwOnFailure = true)
         {
             if (!ScanObjectForType(ref dReader, propertyName))
             {
-                throw new InvalidOperationException($"Unable to find {propertyName} discriminator");
+                if (throwOnFailure)
+                {
+                    throw new InvalidOperationException($"Unable to find {propertyName} discriminator");
+                }
+
+                return null;
             }
 
             return ReadPropertyValue(ref dReader);
