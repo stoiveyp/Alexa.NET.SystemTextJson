@@ -4,22 +4,22 @@ namespace Alexa.NET.Request
 {
     public class Slot
     {
-        [JsonPropertyName("name")]
+        [JsonPropertyName("name")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Name { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonPropertyName("value")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Value { get; set; }
 
-        [JsonPropertyName("confirmationStatus")]
+        [JsonPropertyName("confirmationStatus")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ConfirmationStatus { get; set; }
 
-        [JsonPropertyName("source")]
+        [JsonPropertyName("source")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Source { get; set; }
 
-        [JsonPropertyName("resolutions")]
+        [JsonPropertyName("resolutions")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Resolution Resolution { get; set; }
 
-        [JsonPropertyName("slotValue")]
+        [JsonPropertyName("slotValue")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public SlotValue SlotValue { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace Alexa.NET.Response.Directive
             Source = source;
         }
 
-        [JsonPropertyName("source")]
+        [JsonPropertyName("source")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Source { get; set; }
 
-        [JsonPropertyName("metadata")]
+        [JsonPropertyName("metadata")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public VideoItemMetadata Metadata { get; set; }
     }
 }

@@ -8,25 +8,25 @@ namespace Alexa.NET.Request
 {
     public class AlexaSystem
     {
-        [JsonPropertyName("apiAccessToken")]
+        [JsonPropertyName("apiAccessToken")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ApiAccessToken { get; set; }
 
-        [JsonPropertyName("apiEndpoint")]
+        [JsonPropertyName("apiEndpoint")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ApiEndpoint { get; set; }
 
-        [JsonPropertyName("application")]
+        [JsonPropertyName("application")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Application Application { get; set; }
 
-        [JsonPropertyName("person")]
+        [JsonPropertyName("person")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Person Person { get; set; }
 
-        [JsonPropertyName("user")]
+        [JsonPropertyName("user")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public User User { get; set; }
 
-        [JsonPropertyName("device")]
+        [JsonPropertyName("device")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Device Device { get; set; }
 
-        [JsonPropertyName("unit")]
+        [JsonPropertyName("unit")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Unit Unit { get; set; }
     }
 }

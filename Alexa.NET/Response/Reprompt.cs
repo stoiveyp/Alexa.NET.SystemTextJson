@@ -19,10 +19,10 @@ namespace Alexa.NET.Response
             OutputSpeech = new SsmlOutputSpeech {Ssml = speech.ToXml()};
         }
 
-        [JsonPropertyName("outputSpeech")]
+        [JsonPropertyName("outputSpeech")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public IOutputSpeech OutputSpeech { get; set; }
 
-        [JsonPropertyName("directives")]
+        [JsonPropertyName("directives")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
 
         public bool ShouldSerializeDirectives()

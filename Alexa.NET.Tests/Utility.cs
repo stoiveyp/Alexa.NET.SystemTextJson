@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-
+﻿using System.IO;
+using Json.More;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Alexa.NET.Tests
 {
@@ -13,23 +10,16 @@ namespace Alexa.NET.Tests
 
         public static bool CompareJson(object actual, string expectedFile)
         {
-            var actualJObject = JObject.FromObject(actual);
-            var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
-            var expectedJObject = JObject.Parse(expected);
-            return JToken.DeepEquals(expectedJObject, actualJObject);
+            var actualJObject = JsonSerializer.SerializeToDocument(actual);
+            var expectedJObject = JsonDocument.Parse(File.OpenRead(FilePath(expectedFile)));
+            return actualJObject.IsEquivalentTo(expectedJObject);
         }
-
+        
         public static T ExampleFileContent<T>(string expectedFile)
         {
-            using (var reader = new JsonTextReader(new StringReader(ExampleFileContent(expectedFile))))
-            {
-                return new Newtonsoft.Json.JsonSerializer().Deserialize<T>(reader);
-            }
+            return JsonSerializer.Deserialize<T>(File.OpenRead(FilePath(expectedFile)));
         }
 
-        public static string ExampleFileContent(string expectedFile)
-        {
-            return File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
-        }
+        private static string FilePath(string expectedFile) => Path.Combine(ExamplesPath, expectedFile);
     }
 }

@@ -7,7 +7,7 @@ namespace Alexa.NET.Request
     {
         private string _name;
 
-        [JsonPropertyName("name")]
+        [JsonPropertyName("name")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Name {
             get { return _name; }
             set {
@@ -20,10 +20,10 @@ namespace Alexa.NET.Request
         public IntentSignature Signature { get; private set; }
 
 
-        [JsonPropertyName("confirmationStatus")]
+        [JsonPropertyName("confirmationStatus")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ConfirmationStatus { get; set; }
 
-        [JsonPropertyName("slots")]
+        [JsonPropertyName("slots")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, Slot> Slots { get; set; }
     }
 }

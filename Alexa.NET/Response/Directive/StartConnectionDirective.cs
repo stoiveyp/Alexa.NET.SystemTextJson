@@ -2,25 +2,24 @@
 using Alexa.NET.ConnectionTasks;
 
 
-
 namespace Alexa.NET.Response.Directive
 {
     public class StartConnectionDirective:IDirective
     {
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type => "Connections.StartConnection";
 
-        [JsonPropertyName("uri")]
+        [JsonPropertyName("uri")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Uri { get; set; }
 
-        [JsonPropertyName("input")]
+        [JsonPropertyName("input")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public IConnectionTask Input { get; set; }
 
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
 
-        [JsonPropertyName("onComplete")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonPropertyName("onComplete")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonConverter(typeof(JsonStringEnumConverterEx<OnCompleteAction>))]
         public OnCompleteAction? OnComplete { get; set; }
 
         public StartConnectionDirective(){}

@@ -18,16 +18,16 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonPropertyName("context")]
+        [JsonPropertyName("context")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonPropertyName("partySize")]
+        [JsonPropertyName("partySize")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public int PartySize { get; set; }
 
         [JsonPropertyName("startTime"),JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime? StartTime { get; set; }
 
-        [JsonPropertyName("restaurant")]
+        [JsonPropertyName("restaurant")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Restaurant Restaurant { get; set; }
     }
 }

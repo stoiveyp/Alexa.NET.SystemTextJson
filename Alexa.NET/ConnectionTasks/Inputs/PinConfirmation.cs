@@ -11,7 +11,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonIgnore]
         public string ConnectionUri => AssociatedUri;
 
-        [JsonPropertyName("requestedAuthenticationConfidenceLevel")]
+        [JsonPropertyName("requestedAuthenticationConfidenceLevel")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public AuthenticationConfidenceLevel RequestedAuthenticationConfidenceLevel { get; } =
             new()
             { 

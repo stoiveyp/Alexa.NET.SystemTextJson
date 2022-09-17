@@ -17,10 +17,11 @@ namespace Alexa.NET.Response
             Directive = directive;
         }
 
-        [JsonPropertyName("header")]
+        [JsonPropertyName("header")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ProgressiveResponseHeader Header { get; set; }
 
         [JsonPropertyName("directive")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IProgressiveResponseDirective Directive { get; set; }
     }
 }

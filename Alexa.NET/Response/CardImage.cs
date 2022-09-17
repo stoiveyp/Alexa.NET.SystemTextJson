@@ -4,10 +4,10 @@ namespace Alexa.NET.Response
 {
     public class CardImage
     {
-        [JsonPropertyName("smallImageUrl")]
+        [JsonPropertyName("smallImageUrl")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string SmallImageUrl { get; set; }
 
-        [JsonPropertyName("largeImageUrl")]
+        [JsonPropertyName("largeImageUrl")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string LargeImageUrl { get; set; }
     }
 }

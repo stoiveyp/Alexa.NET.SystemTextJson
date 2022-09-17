@@ -9,7 +9,7 @@ namespace Alexa.NET.Request
         [JsonPropertyName("consentToken"),Obsolete("ConsentToken is deprecated, please use SkillRequest.Context.System.ApiAccessToken")]
         public string ConsentToken { get; set; }
 
-        [JsonPropertyName("scopes")]
+        [JsonPropertyName("scopes")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, Scope> Scopes { get; set; }
     }
 }

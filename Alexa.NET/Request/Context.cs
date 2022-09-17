@@ -8,13 +8,13 @@ namespace Alexa.NET.Request
 {
     public class Context
     {
-        [JsonPropertyName("System")]
+        [JsonPropertyName("System")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public AlexaSystem System { get; set; }
         
-        [JsonPropertyName("AudioPlayer")]
+        [JsonPropertyName("AudioPlayer")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public PlaybackState AudioPlayer { get; set; }
 
-        [JsonPropertyName("Geolocation")]
+        [JsonPropertyName("Geolocation")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Geolocation Geolocation { get; set; }
     }
 }

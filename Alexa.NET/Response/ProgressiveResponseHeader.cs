@@ -12,7 +12,7 @@ namespace Alexa.NET.Response
             RequestId = requestId;
         }
 
-        [JsonPropertyName("requestId")]
+        [JsonPropertyName("requestId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string RequestId { get; }
     }
 }

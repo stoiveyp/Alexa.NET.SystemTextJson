@@ -5,14 +5,14 @@ namespace Alexa.NET.Response.Directive
     public class AudioItemStream
     {
         
-        [JsonPropertyName("url")]
+        [JsonPropertyName("url")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Url { get; set; }
 
         
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
         
-        [JsonPropertyName("expectedPreviousToken")]
+        [JsonPropertyName("expectedPreviousToken")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ExpectedPreviousToken { get; set; }
 
         

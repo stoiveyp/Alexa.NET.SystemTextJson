@@ -4,9 +4,9 @@ namespace Alexa.NET.Request.Type
 {
     public class GeolocationSpeed
     {
-        [JsonPropertyName("speedInMetersPerSecond")]
+        [JsonPropertyName("speedInMetersPerSecond")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public double? Speed { get; set; }
-        [JsonPropertyName("accuracyInMetresPerSecond")]
+        [JsonPropertyName("accuracyInMetresPerSecond")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public double? Accuracy { get; set; }
     }
 }

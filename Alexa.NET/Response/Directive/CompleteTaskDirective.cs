@@ -15,10 +15,10 @@ namespace Alexa.NET.Response.Directive
             Status = new ConnectionStatus(statusCode,statusMessage);
         }
 
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type => "Tasks.CompleteTask";
 
-        [JsonPropertyName("status")]
+        [JsonPropertyName("status")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionStatus Status { get; set; } 
     }
 }

@@ -8,7 +8,7 @@ namespace Alexa.NET.Request
         [JsonPropertyName("level")]
         public int Level { get; set; }
 
-        [JsonPropertyName("customPolicy")]
+        [JsonPropertyName("customPolicy")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public AuthenticationConfidenceLevelCustomPolicy Custom { get; set; }
     }
 }

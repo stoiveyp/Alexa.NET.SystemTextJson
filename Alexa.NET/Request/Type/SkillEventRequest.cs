@@ -8,11 +8,11 @@ namespace Alexa.NET.Request.Type
 {
     public class SkillEventRequest:Request
     {
-        [JsonPropertyName("eventCreationTime")]
+        [JsonPropertyName("eventCreationTime")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         [JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime? EventCreationTime { get; set; }
 
-        [JsonPropertyName("eventPublishingTime")]
+        [JsonPropertyName("eventPublishingTime")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         [JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime? EventPublishingTime { get; set; }
     }

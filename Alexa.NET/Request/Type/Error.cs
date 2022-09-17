@@ -1,5 +1,6 @@
 ﻿
 
+using Alexa.NET.SystemTextJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Alexa.NET.Request.Type
     public class Error
     {
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(JsonStringEnumConverterEx<ErrorType>))]
         public ErrorType Type { get; set; }
 
-        [JsonPropertyName("message")]
+        [JsonPropertyName("message")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Message { get; set; }
     }
 }

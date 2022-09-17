@@ -23,7 +23,7 @@ namespace Alexa.NET.Response.Directive
         [JsonPropertyName("type")]
         public string Type => "VoicePlayer.Speak";
 
-        [JsonPropertyName("speech")]
+        [JsonPropertyName("speech")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Speech { get; }
     }
 }

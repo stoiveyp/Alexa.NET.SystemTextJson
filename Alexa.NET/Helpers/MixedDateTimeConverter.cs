@@ -15,11 +15,6 @@ namespace Alexa.NET.Helpers
 
         public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TryGetDateTime(out var dt))
-            {
-                return dt;
-            }
-
             if (reader.TokenType == JsonTokenType.Number)
             {
                 return UtcFromEpoch(reader.GetInt64());
@@ -27,10 +22,14 @@ namespace Alexa.NET.Helpers
 
             if (reader.TokenType == JsonTokenType.String)
             {
+                if (reader.TryGetDateTime(out var dt))
+                {
+                    return dt;
+                }
                 return DateTime.Parse(reader.GetString());
             }
 
-            return UtcFromEpoch(long.Parse(reader.GetString()));
+            return DateTime.MinValue;
         }
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)

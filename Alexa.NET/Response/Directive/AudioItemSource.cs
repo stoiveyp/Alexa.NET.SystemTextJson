@@ -14,7 +14,7 @@ namespace Alexa.NET.Response.Directive
 			Url = url;
 		}
 
-		[JsonPropertyName("url")]
+		[JsonPropertyName("url")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
 		public string Url { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Alexa.NET.Request.Type
 {
     public class AccountLinkSkillEventRequest:SkillEventRequest
     {
-        [JsonPropertyName("body")]
+        [JsonPropertyName("body")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public AccountLinkSkillEventDetail Body { get; set; }
     }
 }

@@ -5,16 +5,16 @@ namespace Alexa.NET.Request.Type
 {
     public class SessionResumedRequestCause
     {
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type { get; set; }
 
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
 
-        [JsonPropertyName("status")]
+        [JsonPropertyName("status")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionStatus Status { get; set; }
 
-        [JsonPropertyName("result")]
+        [JsonPropertyName("result")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public object Result { get; set; }
     }
 }

@@ -8,13 +8,13 @@ namespace Alexa.NET.Request.Type
 {
     public class PlaybackState
     {
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
 
-        [JsonPropertyName("offsetInMilliseconds")]
+        [JsonPropertyName("offsetInMilliseconds")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public long OffsetInMilliseconds { get; set; }
 
-        [JsonPropertyName("playerActivity")]
+        [JsonPropertyName("playerActivity")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string PlayerActivity { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Alexa.NET
             Message = message;
         }
 
-        [JsonPropertyName("code")]
+        [JsonPropertyName("code")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public int Code { get; set; }
 
-        [JsonPropertyName("message")]
+        [JsonPropertyName("message")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Message { get; set; }
     }
 }

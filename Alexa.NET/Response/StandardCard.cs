@@ -4,7 +4,7 @@ namespace Alexa.NET.Response
 {
     public class StandardCard : ICard
     {
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         
         public string Type
         {
@@ -12,14 +12,14 @@ namespace Alexa.NET.Response
         }
 
         
-        [JsonPropertyName("title")]
+        [JsonPropertyName("title")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Title { get; set; }
 
         
-        [JsonPropertyName("text")]
+        [JsonPropertyName("text")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Content { get; set; }
 
-        [JsonPropertyName("image")]
+        [JsonPropertyName("image")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public CardImage Image { get; set; }
     }
 }

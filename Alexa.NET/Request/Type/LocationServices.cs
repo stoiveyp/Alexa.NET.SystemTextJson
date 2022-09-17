@@ -7,10 +7,10 @@ namespace Alexa.NET.Request.Type
 {
     public class LocationServices
     {
-        [JsonPropertyName("access")]
+        [JsonPropertyName("access")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public LocationServiceAccess Access { get; set; }
 
-        [JsonPropertyName("status")]
+        [JsonPropertyName("status")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public LocationServiceStatus Status { get; set; }
     }
 }

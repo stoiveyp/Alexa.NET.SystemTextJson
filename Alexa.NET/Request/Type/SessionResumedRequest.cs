@@ -8,10 +8,10 @@ namespace Alexa.NET.Request.Type
 {
     public class SessionResumedRequest:Request
     {
-        [JsonPropertyName("originIpAddress")]
+        [JsonPropertyName("originIpAddress")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string OriginIpAddress { get; set; }
 
-        [JsonPropertyName("cause")]
+        [JsonPropertyName("cause")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public SessionResumedRequestCause Cause { get; set; }
     }
 }

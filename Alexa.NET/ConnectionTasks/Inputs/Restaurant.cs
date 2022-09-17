@@ -10,10 +10,10 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonPropertyName("name")]
+        [JsonPropertyName("name")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Name { get; set; }
 
-        [JsonPropertyName("location")]
+        [JsonPropertyName("location")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public PostalAddress Location { get; set; }
     }
 }

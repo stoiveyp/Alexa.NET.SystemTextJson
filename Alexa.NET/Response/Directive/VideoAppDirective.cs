@@ -13,10 +13,10 @@ namespace Alexa.NET.Response.Directive
             VideoItem = new VideoItem(source);
         }
 
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type => "VideoApp.Launch";
 
-        [JsonPropertyName("videoItem")]
+        [JsonPropertyName("videoItem")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public VideoItem VideoItem { get; set; }
 
         public bool? ShouldEndSession => null;

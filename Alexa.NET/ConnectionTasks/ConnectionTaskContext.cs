@@ -4,7 +4,7 @@ namespace Alexa.NET.ConnectionTasks
 {
     public class ConnectionTaskContext
     {
-        [JsonPropertyName("providerId")]
+        [JsonPropertyName("providerId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string ProviderId { get; set; }
     }
 }

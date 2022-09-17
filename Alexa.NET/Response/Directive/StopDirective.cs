@@ -8,7 +8,7 @@ namespace Alexa.NET.Response.Directive
 {
     public class StopDirective : IDirective
     {
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type => "AudioPlayer.Stop";
     }
 }

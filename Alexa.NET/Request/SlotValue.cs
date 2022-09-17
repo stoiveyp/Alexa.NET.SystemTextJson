@@ -1,21 +1,23 @@
 
 
 
+using Alexa.NET.SystemTextJson;
+
 namespace Alexa.NET.Request
 {
     public class SlotValue
     {
         [JsonPropertyName("type"),
-         JsonConverter(typeof(JsonStringEnumConverter))]
+         JsonConverter(typeof(JsonStringEnumConverterEx<SlotValueType>))]
         public SlotValueType SlotType { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonPropertyName("value")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Value { get; set; }
 
-        [JsonPropertyName("values")]
+        [JsonPropertyName("values")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public SlotValue[] Values { get; set; }
 
-        [JsonPropertyName("resolutions")]
+        [JsonPropertyName("resolutions")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Resolution Resolutions { get; set; }
     }
 }

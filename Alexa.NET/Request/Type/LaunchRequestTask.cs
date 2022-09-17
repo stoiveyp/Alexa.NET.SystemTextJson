@@ -5,13 +5,13 @@ namespace Alexa.NET.Request.Type
 {
     public class LaunchRequestTask
     {
-        [JsonPropertyName("name")]
+        [JsonPropertyName("name")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Name { get; set; }
 
-        [JsonPropertyName("version")]
+        [JsonPropertyName("version")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Version { get; set; }
 
-        [JsonPropertyName("input")]
+        [JsonPropertyName("input")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public IConnectionTask Input { get; set; }
     }
 }

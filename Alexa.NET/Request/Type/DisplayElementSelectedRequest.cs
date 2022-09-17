@@ -6,7 +6,7 @@ namespace Alexa.NET.Request.Type
 {
     public class DisplayElementSelectedRequest:Request
     {
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
     }
 }

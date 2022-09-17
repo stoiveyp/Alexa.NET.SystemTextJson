@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alexa.NET.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,19 +19,19 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonPropertyName("@version")]
         public string Version => 1.ToString();
 
-        [JsonPropertyName("context")]
+        [JsonPropertyName("context")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonPropertyName("title")]
+        [JsonPropertyName("title")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Title { get; set; }
 
-        [JsonPropertyName("description")]
+        [JsonPropertyName("description")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Description { get; set; }
 
-        [JsonPropertyName("imageType"),JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonPropertyName("imageType"),JsonConverter(typeof(JsonStringEnumConverterEx<PrintImageV1Type>))]
         public PrintImageV1Type ImageV1Type { get; set; }
 
-        [JsonPropertyName("url")]
+        [JsonPropertyName("url")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Url { get; set; }
     }
 

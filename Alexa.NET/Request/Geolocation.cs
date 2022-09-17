@@ -6,17 +6,17 @@ namespace Alexa.NET.Request
 {
     public class Geolocation
     {
-        [JsonPropertyName("locationServices")]
+        [JsonPropertyName("locationServices")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public LocationServices LocationServices { get; set; }
-        [JsonPropertyName("timestamp")]
+        [JsonPropertyName("timestamp")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public DateTimeOffset Timestamp { get; set; }
-        [JsonPropertyName("coordinate")]
+        [JsonPropertyName("coordinate")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public GeolocationCoordinate Coordinate { get; set; }
-        [JsonPropertyName("altitude")]
+        [JsonPropertyName("altitude")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public GeolocationAltitude Altitude { get; set; }
-        [JsonPropertyName("heading")]
+        [JsonPropertyName("heading")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public GeolocationHeading Heading { get; set; }
-        [JsonPropertyName("speed")]
+        [JsonPropertyName("speed")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public GeolocationSpeed Speed { get; set; }
     }
 }

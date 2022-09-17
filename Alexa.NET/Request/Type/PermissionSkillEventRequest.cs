@@ -7,7 +7,7 @@ namespace Alexa.NET.Request.Type
 {
     public class PermissionSkillEventRequest:SkillEventRequest
     {
-        [JsonPropertyName("body")]
+        [JsonPropertyName("body")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public SkillEventPermissions Body { get; set; }
     }
 }

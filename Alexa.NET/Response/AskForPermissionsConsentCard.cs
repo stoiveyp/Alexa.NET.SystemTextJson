@@ -6,14 +6,14 @@ namespace Alexa.NET.Response
     public class AskForPermissionsConsentCard : ICard
     {
 
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         
         public string Type
         {
             get { return "AskForPermissionsConsent"; }
         }
 
-        [JsonPropertyName("permissions")]
+        [JsonPropertyName("permissions")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         
         public List<string> Permissions { get; set; } = new();
     }

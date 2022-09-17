@@ -7,7 +7,7 @@ namespace Alexa.NET.Request.Type
 {
     public class SkillEnablementSkillEventRequest: SkillEventRequest
     {
-        [JsonPropertyName("body")]
+        [JsonPropertyName("body")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public SkillEventPersistenceStatus Body { get; set; }
     }
 }

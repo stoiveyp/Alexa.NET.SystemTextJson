@@ -1,7 +1,6 @@
 using Alexa.NET.Response.Directive;
 
 
-
 namespace Alexa.NET.Response
 {
     public class PlainTextOutputSpeech : IOutputSpeech
@@ -16,7 +15,7 @@ namespace Alexa.NET.Response
             Text = text;
         }
 
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         
         public string Type
         {
@@ -24,11 +23,11 @@ namespace Alexa.NET.Response
         }
 
         
-        [JsonPropertyName("text")]
+        [JsonPropertyName("text")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Text { get; set; }
 
-        [JsonPropertyName("playBehavior")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonPropertyName("playBehavior")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonConverter(typeof(JsonStringEnumConverterEx<PlayBehavior>))]
         public PlayBehavior? PlayBehavior { get; set; }
     }
 }

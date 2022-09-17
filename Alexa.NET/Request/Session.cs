@@ -8,16 +8,16 @@ namespace Alexa.NET.Request
         [JsonPropertyName("new")]
         public bool New { get; set; }
 
-        [JsonPropertyName("sessionId")]
+        [JsonPropertyName("sessionId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string SessionId { get; set; }
 
-        [JsonPropertyName("attributes")]
+        [JsonPropertyName("attributes")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, object> Attributes { get; set; }
 
-        [JsonPropertyName("application")]
+        [JsonPropertyName("application")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Application Application { get; set; }
 
-        [JsonPropertyName("user")]
+        [JsonPropertyName("user")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public User User { get; set; }
     }
 }

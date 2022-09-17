@@ -4,7 +4,7 @@ namespace Alexa.NET.Request.Type
 {
     public class LaunchRequest : Request
     {
-        [JsonPropertyName("task")]
+        [JsonPropertyName("task")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public LaunchRequestTask Task { get; set; }
     }
 }

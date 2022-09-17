@@ -20,7 +20,7 @@ namespace Alexa.NET.Response.Directive
         [JsonPropertyName("@version")] 
         public string Version { get; set; } = "1";
 
-        [JsonPropertyName("permissionScope")]
+        [JsonPropertyName("permissionScope")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string PermissionScope { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Alexa.NET.Request.Type
 {
     public class ErrorCause
     {
-        [JsonPropertyName("requestId")]
+        [JsonPropertyName("requestId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string requestId { get; set; }
     }
 }

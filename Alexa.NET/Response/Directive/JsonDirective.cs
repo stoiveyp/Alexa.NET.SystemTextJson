@@ -14,7 +14,7 @@ namespace Alexa.NET.Response.Directive
             Type = type;
         }
 
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Type { get; internal set; }
 
         [JsonExtensionData]

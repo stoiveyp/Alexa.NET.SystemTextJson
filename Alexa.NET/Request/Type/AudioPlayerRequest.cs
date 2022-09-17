@@ -8,19 +8,19 @@ namespace Alexa.NET.Request.Type
 {
     public class AudioPlayerRequest: Request
     {
-        [JsonPropertyName("token")]
+        [JsonPropertyName("token")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string Token { get; set; }
 
         [JsonPropertyName("offsetInMilliseconds")]
         public long OffsetInMilliseconds { get; set; }
 
-        [JsonPropertyName("error")]
+        [JsonPropertyName("error")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Error Error { get; set; }
 
-        [JsonPropertyName("currentPlaybackState")]
+        [JsonPropertyName("currentPlaybackState")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public PlaybackState CurrentPlaybackState { get; set; }
 
-        [JsonPropertyName("enqueuedToken")]
+        [JsonPropertyName("enqueuedToken")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string EnqueuedToken { get; set; }
         
         public bool HasEnqueuedItem

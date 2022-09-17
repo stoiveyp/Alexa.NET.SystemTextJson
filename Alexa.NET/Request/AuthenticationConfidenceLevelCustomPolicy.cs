@@ -11,7 +11,7 @@ namespace Alexa.NET.Request
             PolicyName = policyName;
         }
 
-        [JsonPropertyName("policyName")]
+        [JsonPropertyName("policyName")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string PolicyName { get; set; }
     }
 }

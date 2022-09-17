@@ -8,10 +8,10 @@ namespace Alexa.NET.Request
 {
     public class Device
     {
-        [JsonPropertyName("deviceId")]
+        [JsonPropertyName("deviceId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string DeviceID { get; set; }
 
-        [JsonPropertyName("supportedInterfaces")]
+        [JsonPropertyName("supportedInterfaces")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, object> SupportedInterfaces { get; set; }
 
         public bool IsInterfaceSupported(string interfaceName)
@@ -20,7 +20,7 @@ namespace Alexa.NET.Request
             return (hasInterface.HasValue ? hasInterface.Value : false); 
         }
 
-        [JsonPropertyName("persistentEndpointId")]
+        [JsonPropertyName("persistentEndpointId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string PersistentEndpointID { get; set; }
     }
 }

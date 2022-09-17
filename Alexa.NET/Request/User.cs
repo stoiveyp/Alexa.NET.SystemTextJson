@@ -4,13 +4,13 @@ namespace Alexa.NET.Request
 {
     public class User
     {
-        [JsonPropertyName("userId")]
+        [JsonPropertyName("userId")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string UserId { get; set; }
 
-        [JsonPropertyName("accessToken")]
+        [JsonPropertyName("accessToken")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public string AccessToken { get; set; }
 
-        [JsonPropertyName("permissions")]
+        [JsonPropertyName("permissions")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Permissions Permissions { get; set; }
     }
 }

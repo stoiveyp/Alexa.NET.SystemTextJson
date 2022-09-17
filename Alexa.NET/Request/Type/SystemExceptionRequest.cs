@@ -8,9 +8,9 @@ namespace Alexa.NET.Request.Type
 {
     public class SystemExceptionRequest : Request
     {
-        [JsonPropertyName("error")]
+        [JsonPropertyName("error")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public Error Error { get; set; }
-        [JsonPropertyName("cause")]
+        [JsonPropertyName("cause")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ErrorCause ErrorCause { get; set; }
     }
 }
