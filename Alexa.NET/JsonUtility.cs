@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alexa.NET.SystemTextJson
 {
-    public static class ReaderUtility
+    public static class JsonUtility
     {
+        public static string GetPropertyValue(Utf8JsonReader reader, string propertyName)
+        {
+            return GetPropertyValue(ref reader, propertyName);
+        }
+
         public static string GetPropertyValue(ref Utf8JsonReader dReader, string propertyName)
         {
             if (!ScanObjectForType(ref dReader, propertyName))
@@ -26,7 +29,7 @@ namespace Alexa.NET.SystemTextJson
 
         public static bool ScanObjectForType(ref Utf8JsonReader dReader, string propertyName, bool skip = false)
         {
-            while (skip || dReader.TokenType != JsonTokenType.PropertyName || dReader.GetString() != propertyName)
+            while (skip || dReader.TokenType != JsonTokenType.PropertyName || !dReader.GetString().Equals(propertyName, StringComparison.OrdinalIgnoreCase))
             {
                 if (!dReader.Read())
                 {
@@ -48,6 +51,28 @@ namespace Alexa.NET.SystemTextJson
             }
 
             return true;
+        }
+
+        public static T ReadWithoutConverter<T>(this JsonConverter converter, ref Utf8JsonReader reader,
+            JsonSerializerOptions options)
+        {
+            return (T)ReadWithoutConverter(converter, ref reader, typeof(T), options);
+        }
+
+        public static object ReadWithoutConverter(this JsonConverter converter, ref Utf8JsonReader reader,
+            Type returnType, JsonSerializerOptions options)
+        {
+            var newOptions = new JsonSerializerOptions(options);
+            newOptions.Converters.Remove(converter);
+            return JsonSerializer.Deserialize(ref reader, returnType, newOptions);
+        }
+
+        public static void WriteWithoutConverter(this Utf8JsonWriter writer, JsonConverter converter,object value,
+            JsonSerializerOptions options)
+        {
+            var newOptions = new JsonSerializerOptions(options);
+            newOptions.Converters.Remove(converter);
+            JsonSerializer.Serialize(writer, value, value.GetType(), newOptions);
         }
     }
 }

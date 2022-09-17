@@ -28,7 +28,7 @@ namespace Alexa.NET.Request.Type
                 }
             }
 
-            return ;
+            return null;
         }
     }
 }

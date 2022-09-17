@@ -9,9 +9,9 @@ namespace Alexa.NET.Request.Type
     {
         public bool CanCreate(Utf8JsonReader reader)
         {
-            if (ReaderUtility.ScanObjectForType(ref reader, "name"))
+            if (JsonUtility.ScanObjectForType(ref reader, "name"))
             {
-                return ReaderUtility.ReadPropertyValue(ref reader) == "AskFor";
+                return JsonUtility.ReadPropertyValue(ref reader) == "AskFor";
             }
 
             return false;

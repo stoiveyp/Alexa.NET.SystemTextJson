@@ -15,7 +15,7 @@ namespace Alexa.NET.Response.Directive
         }
 
         [JsonPropertyName("type")]
-        public string Type { get; }
+        public string Type { get; internal set; }
 
         [JsonExtensionData]
         public Dictionary<string, object> Properties { get; set; } = new();

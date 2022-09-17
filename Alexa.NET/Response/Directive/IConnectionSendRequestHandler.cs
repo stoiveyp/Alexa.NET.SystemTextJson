@@ -1,11 +1,9 @@
-﻿
+﻿using System;
 
 namespace Alexa.NET.Response.Directive
 {
     public interface IConnectionSendRequestHandler
     {
-        bool CanCreate(JObject data);
-
-        ConnectionSendRequest Create();
+        Type Create(Utf8JsonReader reader);
     }
 }

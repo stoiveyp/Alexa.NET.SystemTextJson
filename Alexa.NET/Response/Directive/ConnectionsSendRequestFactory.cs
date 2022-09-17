@@ -13,16 +13,19 @@ namespace Alexa.NET.Response.Directive
         };
 
 
-        public static IDirective Create(JObject data)
+        public static Type Create(Utf8JsonReader data)
         {
-            var handler = Handlers.FirstOrDefault(h => h.CanCreate(data));
-
-            if (handler == null)
+            foreach (var handler in Handlers)
             {
-                throw new InvalidOperationException("Unable to parse Connections.SendRequest directive");
+                var temp = data;
+                var result = handler.Create(temp);
+                if (result != null)
+                {
+                    return result;
+                }
             }
 
-            return handler.Create();
+            throw new InvalidOperationException("Unable to parse Connections.SendRequest directive");
         }
     }
 }

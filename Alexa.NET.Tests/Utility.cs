@@ -23,7 +23,7 @@ namespace Alexa.NET.Tests
         {
             using (var reader = new JsonTextReader(new StringReader(ExampleFileContent(expectedFile))))
             {
-                return new JsonSerializer().Deserialize<T>(reader);
+                return new Newtonsoft.Json.JsonSerializer().Deserialize<T>(reader);
             }
         }
 

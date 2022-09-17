@@ -8,7 +8,6 @@ namespace Alexa.NET.Request.Type
 {
     public interface IConnectionTaskConverter
     {
-        bool CanConvert(JObject jObject);
-        IConnectionTask Convert(JObject jObject);
+        System.Type IdentifyType(Utf8JsonReader reader);
     }
 }

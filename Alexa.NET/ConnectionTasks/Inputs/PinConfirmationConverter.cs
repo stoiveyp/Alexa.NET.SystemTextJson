@@ -2,22 +2,15 @@
 using System.Linq;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response.Converters;
+using Alexa.NET.SystemTextJson;
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
     public class PinConfirmationConverter : IConnectionTaskConverter
     {
-        public bool CanConvert(JObject jObject)
+        public IConnectionTask Convert(JsonDocument jObject)
         {
-            return jObject.ContainsKey("uri") &&
-                   jObject.GetValue("uri").Value<string>() == PinConfirmation.AssociatedUri;
-        }
-
-        public IConnectionTask Convert(JObject jObject)
-        {
-            var task = new PinConfirmation();
-            Serializer.Populate(jObject.CreateReader(), task);
-            return task;
+            return jObject.Deserialize<PinConfirmation>();
         }
 
         public static void AddToConnectionTaskConverters()
@@ -31,11 +24,20 @@ namespace Alexa.NET.ConnectionTasks.Inputs
 
         public static PinConfirmationResult ResultFromSessionResumed(SessionResumedRequest request)
         {
-            if (request.Cause.Result is JObject jo)
+            if (request.Cause.Result is JsonDocument jo)
             {
-                var task = new PinConfirmationResult();
-                Serializer.Populate(jo.CreateReader(), task);
-                return task;
+                return jo.Deserialize<PinConfirmationResult>();
+            }
+
+            return null;
+        }
+
+        public Type IdentifyType(Utf8JsonReader reader)
+        {
+            var value = JsonUtility.GetPropertyValue(ref reader, "uri");
+            if (value == PinConfirmation.AssociatedUri)
+            {
+                return typeof(PinConfirmation);
             }
 
             return null;

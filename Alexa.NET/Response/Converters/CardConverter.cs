@@ -3,46 +3,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Alexa.NET.SystemTextJson;
 
 namespace Alexa.NET.Response.Converters
 {
-    public class CardConverter : JsonConverter
+    public class CardConverter : DiscriminatorJsonConverter<ICard>
     {
-        public override bool CanWrite => false;
-
-        public override bool CanRead => true;
-
-        public static Dictionary<string, Func<ICard>> TypeFactories = new()
+        public static Dictionary<string, Type> TypeFactories = new()
         {
-            { "Simple", () => new SimpleCard() },
-            { "Standard", () => new StandardCard() },
-            { "LinkAccount", () => new LinkAccountCard() },
-            { "AskForPermissionsConsent", () => new AskForPermissionsConsentCard() }
+            { "Simple", typeof(SimpleCard) },
+            { "Standard", typeof(StandardCard) },
+            { "LinkAccount", typeof(LinkAccountCard) },
+            { "AskForPermissionsConsent", typeof(AskForPermissionsConsentCard) }
         };
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
+        public CardConverter():base("type"){}
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        protected override ICard GenerateFromDiscriminator(string type, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            var jsonObject = JObject.Load(reader);
-            var typeKey = jsonObject["type"] ?? jsonObject["Type"];
-            var typeValue = typeKey.Value<string>();
-            var hasFactory = TypeFactories.ContainsKey(typeValue);
-
-            if (!hasFactory)
+            if (!TypeFactories.TryGetValue(type, out var returnType))
                 throw new Exception(
                     $"unable to deserialize response. " +
-                    $"unrecognized card type '{typeValue}'"
+                    $"unrecognized card type '{type}'"
                 );
 
-            var card = TypeFactories[typeValue]();
-
-            serializer.Populate(jsonObject.CreateReader(), card);
-
-            return card;
+            return (ICard)JsonSerializer.Deserialize(ref reader, returnType, options);
         }
 
         public override bool CanConvert(Type objectType)

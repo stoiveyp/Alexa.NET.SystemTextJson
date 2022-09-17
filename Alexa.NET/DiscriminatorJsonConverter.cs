@@ -19,7 +19,7 @@ namespace Alexa.NET.SystemTextJson
                 throw new InvalidOperationException("Bad position for a JSON object");
             }
 
-            var discriminator = ReaderUtility.GetPropertyValue(ref dReader, propertyName);
+            var discriminator = JsonUtility.GetPropertyValue(ref dReader, propertyName);
 
             var newOptions = new JsonSerializerOptions(options);
             newOptions.Converters.Remove(this);
@@ -35,9 +35,7 @@ namespace Alexa.NET.SystemTextJson
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            var newOptions = new JsonSerializerOptions(options);
-            newOptions.Converters.Remove(this);
-            JsonSerializer.Serialize(writer, value, value.GetType(), newOptions);
+            writer.WriteWithoutConverter(this, value, options);
         }
 
         private string PropertyName { get; }

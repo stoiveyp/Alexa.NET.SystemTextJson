@@ -1,46 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Alexa.NET.SystemTextJson;
 
 
 namespace Alexa.NET.Response.Converters
 {
-    public class OutputSpeechConverter : JsonConverter
+    public class OutputSpeechConverter : DiscriminatorJsonConverter<IOutputSpeech>
     {
-        public override bool CanRead => true;
-
-        public override bool CanWrite => false;
-
-        public static Dictionary<string, Func<IOutputSpeech>> TypeFactories = new()
+        public static Dictionary<string, Type> TypeFactories = new()
         {
-            { "SSML", () => new SsmlOutputSpeech() },
-            { "PlainText", () => new PlainTextOutputSpeech() },
+            { "SSML", typeof(SsmlOutputSpeech) },
+            { "PlainText", typeof(PlainTextOutputSpeech) },
         };
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public OutputSpeechConverter() : base("type")
         {
-            throw new NotImplementedException();
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        protected override IOutputSpeech GenerateFromDiscriminator(string type, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            var jsonObject = JObject.Load(reader);
-            var typeKey = jsonObject["type"] ?? jsonObject["Type"];
-            var typeValue = typeKey.Value<string>();
-            var hasFactory = TypeFactories.ContainsKey(typeValue);
-
-            if (!hasFactory)
+            if(!TypeFactories.TryGetValue(type, out var returnType))
                 throw new Exception(
                     $"unable to deserialize response. " +
-                    $"unrecognized output speech type '{typeValue}'"
+                    $"unrecognized output speech type '{type}'"
                 );
 
-            var speech = TypeFactories[typeValue]();
-
-            serializer.Populate(jsonObject.CreateReader(), speech);
-
-            return speech;
+            return (IOutputSpeech)JsonSerializer.Deserialize(ref reader, returnType, options);
         }
 
         public override bool CanConvert(Type objectType)

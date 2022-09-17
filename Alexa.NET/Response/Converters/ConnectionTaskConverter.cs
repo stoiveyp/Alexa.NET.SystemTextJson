@@ -1,70 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Alexa.NET.ConnectionTasks;
 using Alexa.NET.ConnectionTasks.Inputs;
 using Alexa.NET.Request.Type;
-
+using Alexa.NET.SystemTextJson;
 
 
 namespace Alexa.NET.Response.Converters
 {
-    public class ConnectionTaskConverter : JsonConverter
+    public class ConnectionTaskConverter : JsonConverter<IConnectionTask>
     {
-        public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new()
+        public static Dictionary<string, Type> TaskFactoryFromUri = new()
         {
-            {"PrintPDFRequest/1",() => new PrintPdfV1() },
-            {"PrintImageRequest/1", () => new PrintImageV1() },
-            {"PrintWebPageRequest/1",() => new PrintWebPageV1()},
-            {"ScheduleTaxiReservationRequest/1",() => new ScheduleTaxiReservation() },
-            {"ScheduleFoodEstablishmentReservationRequest/1",() => new ScheduleFoodEstablishmentReservation()}
+            {"PrintPDFRequest/1",typeof(PrintPdfV1) },
+            {"PrintImageRequest/1", typeof(PrintImageV1) },
+            {"PrintWebPageRequest/1",typeof(PrintWebPageV1)},
+            {"ScheduleTaxiReservationRequest/1",typeof(ScheduleTaxiReservation) },
+            {"ScheduleFoodEstablishmentReservationRequest/1",typeof(ScheduleFoodEstablishmentReservation)}
         };
 
         public static readonly List<IConnectionTaskConverter> ConnectionTaskConverters = new();
 
-        public override bool CanRead => true;
-        public override bool CanWrite => false;
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var jsonObject = JObject.Load(reader);
-            IConnectionTask directive;
-
-            // Check task factories
-            var typeKey = jsonObject.Value<string>("@type");
-            var versionKey = jsonObject.Value<string>("@version");
-            var factoryKey = $"{typeKey}/{versionKey}";
-            var hasFactory = TaskFactoryFromUri.ContainsKey(factoryKey);
-            if(hasFactory)
-            {
-                directive = TaskFactoryFromUri[factoryKey]();
-            }
-            else
-            {
-                // Check task converters
-                var converter = ConnectionTaskConverters.FirstOrDefault(c => c.CanConvert(jsonObject));
-                if(converter is null) 
-                    throw new Exception(
-                         $"unable to deserialize response. " +
-                         $"unrecognized task type '{typeKey}' with version '{versionKey}'"
-                     );
-                directive = converter.Convert(jsonObject);
-            }
-                
-
-            serializer.Populate(jsonObject.CreateReader(), directive);
-
-            return directive;
-        }
 
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(IConnectionTask);
+        }
+
+        public override IConnectionTask Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            var typeKey = JsonUtility.GetPropertyValue(reader, "@type");
+            var versionKey = JsonUtility.GetPropertyValue(reader, "@version");
+            var factoryKey = $"{typeKey}/{versionKey}";
+            var hasFactory = TaskFactoryFromUri.ContainsKey(factoryKey);
+            if (hasFactory)
+            {
+                var directive = TaskFactoryFromUri[factoryKey];
+                return (IConnectionTask)this.ReadWithoutConverter(ref reader, directive, options);
+            }
+
+            foreach (var converter in ConnectionTaskConverters)
+            {
+                var tempReader = reader;
+                var converterType = converter.IdentifyType(tempReader);
+                if (converterType != null)
+                {
+                    return (IConnectionTask)this.ReadWithoutConverter(ref reader, converterType, options);
+                }
+            }
+
+            throw new Exception(
+                $"unable to deserialize response. " +
+                $"unrecognized task type '{typeKey}' with version '{versionKey}'"
+            );
+        }
+
+        public override void Write(Utf8JsonWriter writer, IConnectionTask value, JsonSerializerOptions options)
+        {
+            writer.WriteWithoutConverter(this, value, options);
         }
     }
 }

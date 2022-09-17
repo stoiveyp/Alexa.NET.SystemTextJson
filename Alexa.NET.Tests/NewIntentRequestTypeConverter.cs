@@ -1,4 +1,5 @@
 ﻿using Alexa.NET.Request.Type;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Alexa.NET.Tests
 {
@@ -9,9 +10,9 @@ namespace Alexa.NET.Tests
             return requestType == "AlexaNet.CustomIntent";
         }
 
-        public Request.Type.Request Convert(string requestType)
+        public Request.Type.Request Convert(string requestType, ref Utf8JsonReader reader, JsonSerializerOptions options)
         {
-            return new NewIntentRequest();
+            return JsonSerializer.Deserialize<NewIntentRequest>(ref reader, options);
         }
     }
 }

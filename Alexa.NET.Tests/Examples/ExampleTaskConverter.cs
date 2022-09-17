@@ -1,24 +1,15 @@
-﻿using Alexa.NET.ConnectionTasks;
+﻿using System;
+using Alexa.NET.ConnectionTasks;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response.Converters;
 
 using System.Linq;
+using Alexa.NET.SystemTextJson;
 
 namespace Alexa.NET.Tests.Examples
 {
     public class ExampleTaskConverter : IConnectionTaskConverter
     {
-        public bool CanConvert(JObject jObject)
-        {
-            var property = jObject["randomParameter"];
-            return property is object;
-        }
-
-        public IConnectionTask Convert(JObject jObject)
-        {
-            return new ExampleTask();
-        }
-
         public static void AddToConnectionTaskConverters()
         {
             if (ConnectionTaskConverter.ConnectionTaskConverters.Where(rc => rc != null)
@@ -26,6 +17,16 @@ namespace Alexa.NET.Tests.Examples
             {
                 ConnectionTaskConverter.ConnectionTaskConverters.Add(new ExampleTaskConverter());
             }
+        }
+
+        public Type IdentifyType(Utf8JsonReader reader)
+        {
+            if (JsonUtility.ScanObjectForType(ref reader, "randomParameter"))
+            {
+                return typeof(ExampleTask);
+            }
+
+            return null;
         }
     }
 }

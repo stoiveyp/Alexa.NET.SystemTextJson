@@ -1,17 +1,20 @@
 ﻿
 
+using System;
+using Alexa.NET.SystemTextJson;
+
 namespace Alexa.NET.Response.Directive
 {
     public class AskForPermissionDirectiveHandler : IConnectionSendRequestHandler
     {
-        public bool CanCreate(JObject data)
+        public Type Create(Utf8JsonReader reader)
         {
-            return data.Value<string>("name") == "AskFor";
-        }
+            if (JsonUtility.GetPropertyValue(reader, "name") == "AskFor")
+            {
+                return typeof(AskForPermissionDirective);
+            }
 
-        public ConnectionSendRequest Create()
-        {
-            return new AskForPermissionDirective();
+            return null;
         }
     }
 }
