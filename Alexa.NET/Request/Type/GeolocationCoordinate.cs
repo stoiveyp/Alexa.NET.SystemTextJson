@@ -4,13 +4,13 @@ namespace Alexa.NET.Request.Type
 {
     public class GeolocationCoordinate
     {
-        [JsonPropertyName("latitudeInDegrees")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("latitudeInDegrees")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("longitudeInDegrees")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("longitudeInDegrees")]
         public double Longitude { get; set; }
 
-        [JsonPropertyName("accuracyInMeters")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("accuracyInMeters")]
         public double Accuracy { get; set; }
     }
 }

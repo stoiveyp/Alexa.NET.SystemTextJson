@@ -8,7 +8,7 @@ namespace Alexa.NET.Request
     {
         [JsonPropertyName("locationServices")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public LocationServices LocationServices { get; set; }
-        [JsonPropertyName("timestamp")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("timestamp")]
         public DateTimeOffset Timestamp { get; set; }
         [JsonPropertyName("coordinate")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public GeolocationCoordinate Coordinate { get; set; }

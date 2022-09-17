@@ -8,11 +8,11 @@ namespace Alexa.NET.ConnectionTasks.Inputs
 {
     public class PinConfirmationResult
     {
-        [JsonPropertyName("status")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("status")]
         [JsonConverter(typeof(JsonStringEnumConverterEx<PinConfirmationStatus>))]
         public PinConfirmationStatus Status { get; set; }
 
-        [JsonPropertyName("reason")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("reason")]
         [JsonConverter(typeof(JsonStringEnumConverterEx<PinConfirmationReason>))]
         public PinConfirmationReason Reason { get; set; }
     }

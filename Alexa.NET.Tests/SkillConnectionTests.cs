@@ -65,7 +65,7 @@ namespace Alexa.NET.Tests
             var request = Assert.IsType<SessionResumedRequest>(result);
 
             Assert.Equal("1234", request.Cause.Token);
-            Assert.Equal(200, request.Cause.Status.Code);
+            Assert.Equal("200", request.Cause.Status.Code);
             Assert.Equal("OK", request.Cause.Status.Message);
         }
 

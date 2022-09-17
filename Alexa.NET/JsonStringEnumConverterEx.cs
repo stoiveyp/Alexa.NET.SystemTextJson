@@ -30,7 +30,10 @@ namespace Alexa.NET
                 if (attr?.Value != null)
                 {
                     _enumToString.Add(value, attr.Value);
-                    _stringToEnum.Add(attr.Value, value);
+                    if (!_stringToEnum.ContainsKey(attr.Value))
+                    {
+                        _stringToEnum.Add(attr.Value, value);
+                    }
                     _numberToEnum.Add(num, value);
                 }
                 else

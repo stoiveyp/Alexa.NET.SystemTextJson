@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,12 +40,10 @@ namespace Alexa.NET.Response
             set => _shouldEndSession = value;
         }
 
-        [JsonPropertyName("directives")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("directives")]
+        [JsonConverter(typeof(EmptyListConverter<IDirective>))]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
-
-        public bool ShouldSerializeDirectives()
-        {
-            return Directives.Count > 0;
-        }
     }
 }

@@ -22,7 +22,8 @@ namespace Alexa.NET.Response
         [JsonPropertyName("outputSpeech")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public IOutputSpeech OutputSpeech { get; set; }
 
-        [JsonPropertyName("directives")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("directives")]
+        [JsonConverter(typeof(EmptyListConverter<IDirective>))]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
 
         public bool ShouldSerializeDirectives()

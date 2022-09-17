@@ -134,7 +134,7 @@ namespace Alexa.NET.Tests
                 }
             };
 
-            Assert.True(CompareJson(actual, "Resolution.json"));
+            Assert.True(Utility.CompareJson(actual, "Resolution.json"));
         }
 
         [Fact]
@@ -180,8 +180,8 @@ namespace Alexa.NET.Tests
 
 
 
-            Assert.True(CompareObjectJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
-            Assert.True(CompareObjectJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
+            Assert.True(Utility.CompareJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
+            Assert.True(Utility.CompareJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
         }
 
         [Fact]
@@ -207,25 +207,6 @@ namespace Alexa.NET.Tests
         {
             var convertedObj = Utility.ExampleFileContent<SkillRequest>("SkillEventEnabled.json");
             var request = Assert.IsAssignableFrom<SkillEventRequest>(convertedObj.Request);
-        }
-
-        private bool CompareObjectJson(object actual, object expected)
-        {
-
-            var actualJObject = JObject.FromObject(actual);
-            var expectedJObject = JObject.FromObject(expected);
-
-            return JToken.DeepEquals(expectedJObject, actualJObject);
-        }
-
-        private bool CompareJson(object actual, string expectedFile)
-        {
-
-            var actualJObject = JObject.FromObject(actual);
-            var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
-            var expectedJObject = JObject.Parse(expected);
-
-            return JToken.DeepEquals(expectedJObject, actualJObject);
         }
 
         [Fact]
@@ -336,7 +317,7 @@ namespace Alexa.NET.Tests
             Assert.Equal("AskFor",askFor.Name);
             Assert.Equal(PermissionStatus.Denied,askFor.Payload.Status);
             Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
-            Assert.Equal(200,askFor.Status.Code);
+            Assert.Equal("200",askFor.Status.Code);
             Assert.Equal("Test Message",askFor.Status.Message);
             Utility.CompareJson(askFor, "ConnectionsResponseRequest.json");
         }

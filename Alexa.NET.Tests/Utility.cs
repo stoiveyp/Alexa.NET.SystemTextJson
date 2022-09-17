@@ -14,7 +14,14 @@ namespace Alexa.NET.Tests
             var expectedJObject = JsonDocument.Parse(File.OpenRead(FilePath(expectedFile)));
             return actualJObject.IsEquivalentTo(expectedJObject);
         }
-        
+
+        public static bool CompareJson(object actual, object expectedObject)
+        {
+            var actualJObject = JsonSerializer.SerializeToDocument(actual);
+            var expectedJObject = JsonSerializer.SerializeToDocument(expectedObject);
+            return actualJObject.IsEquivalentTo(expectedJObject);
+        }
+
         public static T ExampleFileContent<T>(string expectedFile)
         {
             return JsonSerializer.Deserialize<T>(File.OpenRead(FilePath(expectedFile)));

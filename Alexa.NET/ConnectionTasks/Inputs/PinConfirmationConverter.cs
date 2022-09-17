@@ -24,7 +24,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
 
         public static PinConfirmationResult ResultFromSessionResumed(SessionResumedRequest request)
         {
-            if (request.Cause.Result is JsonDocument jo)
+            if (request.Cause.Result is JsonElement jo)
             {
                 return jo.Deserialize<PinConfirmationResult>();
             }

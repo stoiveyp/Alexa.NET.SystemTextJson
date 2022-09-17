@@ -17,6 +17,7 @@
       "title": "Horoscope",
       "content": "Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless."
     },
-    "shouldEndSession": false
+    "shouldEndSession": false,
+    "directives": null
   }
 }

@@ -21,7 +21,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         [JsonPropertyName("context")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public ConnectionTaskContext Context { get; set; }
 
-        [JsonPropertyName("partySize")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("partySize")]
         public int PartySize { get; set; }
 
         [JsonPropertyName("startTime"),JsonConverter(typeof(MixedDateTimeConverter))]

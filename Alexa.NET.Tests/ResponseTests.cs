@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Nodes;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Ssml;
@@ -479,11 +480,11 @@ namespace Alexa.NET.Tests
             Assert.Equal("1.0", deserialized.Version);
 
             var sessionAttributeSupportedHoriscopePeriods =
-                JObject.FromObject(deserialized.SessionAttributes["supportedHoriscopePeriods"]);
+                JsonDocument.Parse(JsonSerializer.Serialize(deserialized.SessionAttributes["supportedHoriscopePeriods"]));
 
-            Assert.Equal(true, sessionAttributeSupportedHoriscopePeriods.Value<bool>("daily"));
-            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("weekly"));
-            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("monthly"));
+            Assert.Equal(true, sessionAttributeSupportedHoriscopePeriods.RootElement.GetProperty("daily").GetBoolean());
+            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.RootElement.GetProperty("weekly").GetBoolean());
+            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.RootElement.GetProperty("monthly").GetBoolean());
 
             var responseBody = deserialized.Response;
 
@@ -527,16 +528,21 @@ namespace Alexa.NET.Tests
         [Fact]
         public void NewDirectiveSupport()
         {
-            var directive = new JsonDirective("UnknownDirectiveType");
-            directive.Properties.Add("testProperty",new JObject(new JProperty("value","test")));
-            var jsonOutput = JsonConvert.SerializeObject(directive);
+            var property = new JsonObject
+            {
+                ["value"] = "test",
+            };
 
-            var outputDirective = JsonConvert.DeserializeObject<IDirective>(jsonOutput);
+            var directive = new JsonDirective("UnknownDirectiveType");
+            directive.Properties.Add("testProperty",property);
+            var jsonOutput = JsonSerializer.Serialize(directive);
+            var outputDirective = JsonSerializer.Deserialize<IDirective>(jsonOutput);
+
             var jsonInput = Assert.IsType<JsonDirective>(outputDirective);
             Assert.Equal("UnknownDirectiveType",jsonInput.Type);
             Assert.True(jsonInput.Properties.ContainsKey("testProperty"));
-            var jsonObject = Assert.IsType<JObject>(jsonInput.Properties["testProperty"]);
-            Assert.Equal("test",jsonObject.Value<string>("value"));
+            var jsonObject = Assert.IsType<JsonElement>(jsonInput.Properties["testProperty"]);
+            Assert.Equal("test",jsonObject.GetProperty("value").GetString());
         }
 
         [Fact]
@@ -596,12 +602,6 @@ namespace Alexa.NET.Tests
             Assert.Equal("AskFor",askFor.Name);
             Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
             Utility.CompareJson(askFor, "AskForPermissionsConsentDirective.json");
-        }
-
-        private bool CompareJson(object actual, JObject expected)
-        {
-            var actualJObject = JObject.FromObject(actual);
-            return JToken.DeepEquals(expected, actualJObject);
         }
     }
 }

@@ -14,7 +14,7 @@
         {
             return requestType switch
             {
-                "AlexaSkillEvent.SkillAccountLinked" => JsonSerializer.Deserialize<IntentRequest>(ref reader, options),
+                "AlexaSkillEvent.SkillAccountLinked" => JsonSerializer.Deserialize<AccountLinkSkillEventRequest>(ref reader, options),
                 "AlexaSkillEvent.SkillPermissionAccepted" => JsonSerializer.Deserialize<PermissionSkillEventRequest>(ref reader, options),
                 "AlexaSkillEvent.SkillPermissionChanged" => JsonSerializer.Deserialize<PermissionSkillEventRequest>(ref reader, options),
                 "AlexaSkillEvent.SkillDisabled" => JsonSerializer.Deserialize<SkillEnablementSkillEventRequest>(ref reader, options),

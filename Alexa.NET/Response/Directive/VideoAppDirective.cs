@@ -19,6 +19,7 @@ namespace Alexa.NET.Response.Directive
         [JsonPropertyName("videoItem")][JsonIgnore(Condition=JsonIgnoreCondition.WhenWritingNull)]
         public VideoItem VideoItem { get; set; }
 
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ShouldEndSession => null;
     }
 }
